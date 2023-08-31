@@ -15,6 +15,18 @@ public class Ship {
         this.orientation = orientation;
     }
 
+
+    public void isSunk(int length, int hits) {
+        if(hits >= length){
+            System.out.println("Ship is sunk!");
+            this.sunk = true;
+
+        }
+
+    }
+
+
+
     public boolean getSunk(){
         return this.sunk;
     }
@@ -22,13 +34,28 @@ public class Ship {
         this.sunk = sunk;
     }
 
-    public static void isSunk(int length, int hits) {
-
-        if(hits >= length){
-
-        }
-
+    public int getLength() {
+        return this.length;
     }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getXPos() {
+        return this.xPos;
+    }
+
+    public int getYPos() {
+        return this.yPos;
+    }
+
+    public String getOrientation() {
+        return this.orientation;
+    }
+
+
+
 
 
 

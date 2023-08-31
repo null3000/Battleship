@@ -20,4 +20,21 @@ public class Board {
             System.out.println();
         }
     }
+
+    public void placeShip(String orientation, int length, int xPos, int yPos) {
+        if (orientation.equals("horizontal")) {
+            for (int i = 0; i < length; i++) {
+                board[xPos][yPos + i] = " \uD83D\uDEA2 ";
+            }
+        } else if (orientation.equals("vertical")) {
+            for (int i = 0; i < length; i++) {
+                board[xPos + i][yPos] = " \uD83D\uDEA2 ";
+            }
+        }
+
+
+
+
+    }
+
 }
