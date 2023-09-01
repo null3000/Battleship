@@ -21,7 +21,6 @@ public class Player {
 
 
 
-
 		public Player(String name) {
 			this.name = name;
 			this.board = new Board();
@@ -31,7 +30,7 @@ public class Player {
 		}
 
 
-
+		// Function to place the ships
 		public void placeShips(){
 				setupPossibleLengths();
 				while(possibleLengths.size() > 0) {
@@ -102,9 +101,7 @@ public class Player {
 		}
 
 
-		public void removeLength(ArrayList<Integer> lengths, Integer toBeRemoved) {
-				lengths.remove(toBeRemoved);
-		}
+
 
 
 
