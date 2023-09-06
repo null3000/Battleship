@@ -81,6 +81,7 @@ public class Player {
 								ships.add(ship);
 								board.placeShip("vertical", length, xPos, yPos);
 						}
+							board.printBoard();
 				}
 		}
 
