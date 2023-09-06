@@ -101,7 +101,33 @@ public class Player {
 				}
 		}
 
+	// write a function that gets the player's input on where they want to put their missile
 
+		public void fireMissile() {
+				System.out.println("Where would you like to fire your missile?");
+				Scanner scanner = new Scanner(System.in);
+				System.out.println("What is the x position of your missile?");
+				int xPos = scanner.nextInt();
+				System.out.println("What is the y position of your missile?");
+				int yPos = scanner.nextInt();
+				// check if the xPos and yPos are inside the Board
+				while (xPos < 0 || xPos > 9 || yPos < 0 || yPos > 9) {
+						System.out.println("Please enter a valid position");
+						System.out.println("What is the x position of your missile?");
+						xPos = scanner.nextInt();
+						System.out.println("What is the y position of your missile?");
+						yPos = scanner.nextInt();
+				}
+				if(board.checkHit(xPos, yPos)){
+						System.out.println("You hit a ship!");
+				} else {
+						System.out.println("You missed!");
+				}
+
+		}
+	// write a function that checks if the missile hit a ship
+
+	// write a function that checks if the missile sunk a ship
 
 
 

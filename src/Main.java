@@ -11,7 +11,7 @@ public class Main {
         Player player2 = new Player(name);
 
         player1.placeShips();
-        player1.getPlayersBoard().printBoard();
+        player2.placeShips();
 
 
 
