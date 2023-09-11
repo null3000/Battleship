@@ -69,8 +69,6 @@ public class Board {
 
         return valid;
     }
-
-    // write a function in Board that checks if the missile xPos and yPos hits a ship
     public boolean checkHit(int xPos, int yPos) {
         boolean hit = false;
         if (board[xPos][yPos].equals(shipEmoji)) {
@@ -80,9 +78,37 @@ public class Board {
 
 
     }
-    // if it does then add 1 to the ships hit count
-    // write a function that makes sure you can't hit the same spot repeatedly
-    // change the ship emoji to an X after it's been hit there
+
+    
+
+    // write a function in Board that checks if the missile xPos and yPos hits a ship, and add a hit to the proper ship if it does
+    public Ship getHitShip(int missileXPos, int missileYPos, ArrayList<Ship> ships) {
+        // go through each ship one at a time
+        for (int i = 0; i < ships.size(); i++) {
+            Ship currentShip = ships.get(i);
+            // Loop through each of the ships coordinates individually
+            for (int j = 0; j < ships.get(i).getCoordinates().length; j++) {
+                if (currentShip.getOrientation().equals("vertical")) {
+                    if (currentShip.getXPos() == missileXPos && currentShip.getCoordinates()[j] == missileYPos) {
+                        return currentShip;
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < ships.size(); i++) {
+            Ship currentShip = ships.get(i);
+            // Loop through each of the ships coordinates individually
+            for (int j = 0; j < ships.get(i).getCoordinates().length; j++) {
+                if (currentShip.getOrientation().equals("horizontal")) {
+                    if (currentShip.getYPos() == missileYPos && currentShip.getCoordinates()[j] == missileXPos) {
+                        return currentShip;
+                    }
+                }
+            }
+
+        }
+        return ships.get(0);
+    }
 
 
 

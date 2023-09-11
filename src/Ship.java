@@ -6,6 +6,7 @@ public class Ship {
     private int yPos;
     private String orientation;
     private boolean sunk = false;
+    private int[] coordinates;
     private int hits = 0;
 
 
@@ -14,6 +15,17 @@ public class Ship {
         this.xPos = xPos;
         this.yPos = yPos;
         this.orientation = orientation;
+
+        this.coordinates = new int[length];
+        for(int i = 0; i < length; i++){
+            if(orientation.equals("horizontal")){
+                this.coordinates[i] = xPos + i;
+            } else if(orientation.equals("vertical")){
+                this.coordinates[i] = yPos + i;
+            }
+        }
+
+
     }
 
 
@@ -53,6 +65,18 @@ public class Ship {
 
     public String getOrientation() {
         return this.orientation;
+    }
+
+    public int getHits() {
+        return this.hits;
+    }
+
+    public void addHit() {
+        this.hits = hits++;
+    }
+
+    public int[] getCoordinates(){
+        return this.coordinates;
     }
 
 

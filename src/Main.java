@@ -11,7 +11,10 @@ public class Main {
         Player player2 = new Player(name);
 
         player1.placeShips();
-        player2.placeShips();
+
+
+        player2 .fireMissile();
+
 
 
 

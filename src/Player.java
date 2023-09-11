@@ -120,16 +120,14 @@ public class Player {
 				}
 				if(board.checkHit(xPos, yPos)){
 						System.out.println("You hit a ship!");
+//						make the hit counter go up one on the ship it hit
+
+
 				} else {
 						System.out.println("You missed!");
 				}
 
 		}
-	// write a function that checks if the missile hit a ship
-
-	// write a function that checks if the missile sunk a ship
-
-
 
 
 		public Board getPlayersBoard() {
