@@ -127,12 +127,18 @@ public class Player {
 						System.out.println("You missed!");
 				}
 
+				Ship hitShip = board.getHitShip(xPos, yPos, ships);
+				System.out.println("You hit the ship with length" + hitShip.getLength());
+
 		}
 
 
 		public Board getPlayersBoard() {
 				return this.board;
 		}
+
+
+
 
 
 }

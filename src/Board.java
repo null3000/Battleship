@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.ArrayList;
 public class Board {
 
     public String[][] board = new String[9][9];
