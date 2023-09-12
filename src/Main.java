@@ -13,8 +13,6 @@ public class Main {
         player1.placeShips();
 
 
-        player2 .fireMissile();
-
 
 
 

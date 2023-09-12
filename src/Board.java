@@ -86,6 +86,15 @@ public class Board {
         // go through each ship one at a time
         for (int i = 0; i < ships.size(); i++) {
             Ship currentShip = ships.get(i);
+
+
+
+            for (int j = 0; j < currentShip.getCoordinates().length; j++) {
+                System.out.println(currentShip.getCoordinates()[j]);
+            }
+
+
+
             // Loop through each of the ships coordinates individually
             for (int j = 0; j < ships.get(i).getCoordinates().length; j++) {
                 if (currentShip.getOrientation().equals("vertical")) {

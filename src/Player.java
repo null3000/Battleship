@@ -83,6 +83,9 @@ public class Player {
 						}
 							board.printBoard();
 				}
+				for(int i = 0; i < ships.size(); i++) {
+						System.out.println("Ship " + i + " has length " + ships.get(i).getLength());
+				}
 		}
 
 		public void setupPossibleLengths() {
