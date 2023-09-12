@@ -24,28 +24,28 @@ public class Board {
         }
     }
 
-    public void placeShip(String orientation, int length, int xPos, int yPos) {
+    public void placeShip(String orientation, int length, int col, int row) {
         if (orientation.equals("horizontal")) {
             for (int i = 0; i < length; i++) {
-                board[xPos][yPos + i] = shipEmoji;
+                board[row][col+i] = shipEmoji;
             }
         } else if (orientation.equals("vertical")) {
             for (int i = 0; i < length; i++) {
-                board[xPos + i][yPos] = shipEmoji;
+                board[row+i][col] = shipEmoji;
             }
         }
     }
 
-    public boolean checkValidPlacement(int OrientationChoice, int length, int xPos, int yPos) {
+    public boolean checkValidPlacement(int OrientationChoice, int length, int col, int row) {
 
         boolean valid = true;
         //        check if the boat is out of bounds
         if (OrientationChoice == 1) {
-            if (yPos + length > 9) {
+            if (row + length > 9) {
                 valid = false;
             }
         } else if (OrientationChoice == 2) {
-            if (xPos + length > 9) {
+            if (col + length > 9) {
                 valid = false;
             }
         }
@@ -53,13 +53,13 @@ public class Board {
         if (valid) {
             if (OrientationChoice == 1) {
                 for (int i = 0; i < length; i++) {
-                    if (board[xPos][yPos + i].equals(shipEmoji)) {
+                    if (board[row][col+i].equals(shipEmoji)) {
                         valid = false;
                     }
                 }
             } else if (OrientationChoice == 2) {
                 for (int i = 0; i < length; i++) {
-                    if (board[xPos + i][yPos].equals(shipEmoji)) {
+                    if (board[row+i][col].equals(shipEmoji)) {
                         valid = false;
                     }
                 }
@@ -69,9 +69,9 @@ public class Board {
 
         return valid;
     }
-    public boolean checkHit(int xPos, int yPos) {
+    public boolean checkHit(int col, int row) {
         boolean hit = false;
-        if (board[xPos][yPos].equals(shipEmoji)) {
+        if (board[row][col].equals(shipEmoji)) {
             hit = true;
         }
         return hit;
@@ -82,9 +82,10 @@ public class Board {
     
 
     // write a function in Board that checks if the missile xPos and yPos hits a ship, and add a hit to the proper ship if it does
-    public Ship getHitShip(int missileXPos, int missileYPos, ArrayList<Ship> ships) {
+    public Ship getHitShip(int missileCol, int missileRow, ArrayList<Ship> ships) {
         // go through each ship one at a time
         for (int i = 0; i < ships.size(); i++) {
+            System.out.println(ships.size());
             Ship currentShip = ships.get(i);
 
 
@@ -96,9 +97,13 @@ public class Board {
 
 
             // Loop through each of the ships coordinates individually
-            for (int j = 0; j < ships.get(i).getCoordinates().length; j++) {
+            for (int j = 0; j < currentShip.getCoordinates().length; j++) {
+
+                System.out.println(currentShip.getCoordinates().length);
+
+
                 if (currentShip.getOrientation().equals("vertical")) {
-                    if (currentShip.getXPos() == missileXPos && currentShip.getCoordinates()[j] == missileYPos) {
+                    if (currentShip.getCol() == missileCol && currentShip.getCoordinates()[j] == missileRow) {
                         return currentShip;
                     }
                 }
@@ -109,7 +114,7 @@ public class Board {
             // Loop through each of the ships coordinates individually
             for (int j = 0; j < ships.get(i).getCoordinates().length; j++) {
                 if (currentShip.getOrientation().equals("horizontal")) {
-                    if (currentShip.getYPos() == missileYPos && currentShip.getCoordinates()[j] == missileXPos) {
+                    if (currentShip.getRow() == missileRow && currentShip.getCoordinates()[j] == missileCol) {
                         return currentShip;
                     }
                 }

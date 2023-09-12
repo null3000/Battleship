@@ -2,26 +2,26 @@
 public class Ship {
 
     private int length;
-    private int xPos;
-    private int yPos;
+    private int col;
+    private int row;
     private String orientation;
     private boolean sunk = false;
     private int[] coordinates;
     private int hits = 0;
 
 
-    public Ship(int length, int xPos, int yPos, String orientation) {
+    public Ship(int length, int col, int row, String orientation) {
         this.length = length;
-        this.xPos = xPos;
-        this.yPos = yPos;
+        this.col = col;
+        this.row = row;
         this.orientation = orientation;
 
         this.coordinates = new int[length];
         for(int i = 0; i < length; i++){
             if(orientation.equals("horizontal")){
-                this.coordinates[i] = xPos + i;
+                this.coordinates[i] = col + i;
             } else if(orientation.equals("vertical")){
-                this.coordinates[i] = yPos + i;
+                this.coordinates[i] = row + i;
             }
         }
 
@@ -54,12 +54,12 @@ public class Ship {
         this.length = length;
     }
 
-    public int getXPos() {
-        return this.xPos;
+    public int getCol() {
+        return this.col;
     }
 
-    public int getYPos() {
-        return this.yPos;
+    public int getRow() {
+        return this.row;
     }
 
     public String getOrientation() {
