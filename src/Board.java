@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.util.ArrayList;
 public class Board {
 
@@ -39,13 +38,17 @@ public class Board {
     public boolean checkValidPlacement(int OrientationChoice, int length, int col, int row) {
 
         boolean valid = true;
+
+        if (col < 0 || col > 9 || row < 0 || row > 9) {
+            valid = false;
+        }
         //        check if the boat is out of bounds
         if (OrientationChoice == 1) {
-            if (row + length > 9) {
+            if (col + length > 9) {
                 valid = false;
             }
         } else if (OrientationChoice == 2) {
-            if (col + length > 9) {
+            if (row + length > 9) {
                 valid = false;
             }
         }
@@ -73,6 +76,9 @@ public class Board {
         boolean hit = false;
         if (board[row][col].equals(shipEmoji)) {
             hit = true;
+            board[row][col] = " \uD83D\uDCA5 ";
+        } else {
+            board[row][col] = " ✖️";
         }
         return hit;
 

@@ -40,37 +40,37 @@ public class Player {
 						System.out.println("2. Vertical");
 						// Take their input for orientation AND validate it is only 1 or 2, if 1 set it horizontal if 2 set it vertical
 						Scanner scanner = new Scanner(System.in);
-						int choice = scanner.nextInt();
+						int choice = intInput();
 						while (choice != 1 && choice != 2) {
 								System.out.println("Please enter a valid choice");
-								choice = scanner.nextInt();
+								choice = intInput();
 						}
 
 						// Print the values for lengths and take user input for what length ship they want to place
 						printPossibleLengths();
 						int length = 0;
 						System.out.println("What length do you choose?");
-						length = scanner.nextInt();
+						length = intInput();
 						// Check if length is equal to one of the values in possible lengths
 						while (!possibleLengths.contains(length)) {
 								System.out.println("Please enter a valid length");
-								length = scanner.nextInt();
+								length = intInput();
 						}
 						// Remove already used lengths from the possibleLengths ArrayList
 						possibleLengths.remove(possibleLengths.indexOf(length));
 
 						// Take inputs for where user wants for X and Y coordinates of ship
 						System.out.println("What is the column of your ship?");
-						int col = scanner.nextInt();
+						int col = intInput();
 						System.out.println("What is the row of your ship?");
-						int row = scanner.nextInt();
+						int row = intInput();
 						// Check if the placement is valid
 						while (!board.checkValidPlacement(choice, length, col, row)){
 								System.out.println("Please enter a valid placement");
 								System.out.println("What is the column of your ship?");
-								col = scanner.nextInt();
+								col = intInput();
 								System.out.println("What is the row of your ship?");
-								row = scanner.nextInt();
+								row = intInput();
 						}
 						if (choice == 1) {
 								Ship ship = new Ship(length, col, row, "horizontal");
@@ -109,29 +109,32 @@ public class Player {
 		public void fireMissile() {
 				System.out.println("Where would you like to fire your missile?");
 				Scanner scanner = new Scanner(System.in);
-				System.out.println("What is the x position of your missile?");
-				int col = scanner.nextInt();
-				System.out.println("What is the y position of your missile?");
-				int row = scanner.nextInt();
-				// check if the row and col are inside the Board
-				while (col < 0 || col > 9 || row < 0 || row > 9) {
+				System.out.println("What is the column of your missile?");
+				int col = intInput();
+				System.out.println("What is the row of your missile?");
+				int row = intInput();
+				// check  to make sure the row is between 0 and 9 and the col is between 0 and 9
+				while (row < 0 || row > 9 || col < 0 || col > 9) {
 						System.out.println("Please enter a valid position");
 						System.out.println("What is the column position of your missile?");
-						col = scanner.nextInt();
+						col = intInput();
 						System.out.println("What is the row position of your missile?");
-						row = scanner.nextInt();
+						row = intInput();
 				}
 				if(board.checkHit(col, row)){
 						System.out.println("You hit a ship!");
-//						make the hit counter go up one on the ship it hit
+						Ship hitShip = board.getHitShip(col, row, ships);
+						hitShip.addHit();
+						System.out.println("This ship has " + hitShip.getHits() + " hits");
+						System.out.println("You hit the ship with length " + hitShip.getLength());
+						hitShip.isSunk(hitShip.getLength(), hitShip.getHits());
 
-
-				} else {
+			} else {
 						System.out.println("You missed!");
 				}
+				board.printBoard();
 
-				Ship hitShip = board.getHitShip(col, row, ships);
-				System.out.println("You hit the ship with length" + hitShip.getLength());
+
 
 		}
 
@@ -143,6 +146,18 @@ public class Player {
 		}
 
 
+//		STOLEN CODE VERY HELPFUL THANKS MR. LIN
+		static Scanner s = new Scanner(System.in);
+		public static int intInput() {
+				String uInput = s.nextLine();
+				try{
+						return Integer.parseInt(uInput);
+				}
+				catch (Exception e) {
+						System.out.println("That is not a number. Try again.");
+						return intInput();
+				}
+		}
 
 
 

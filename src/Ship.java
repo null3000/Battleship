@@ -7,7 +7,7 @@ public class Ship {
     private String orientation;
     private boolean sunk = false;
     private int[] coordinates;
-    private int hits = 0;
+    private int hits;
 
 
     public Ship(int length, int col, int row, String orientation) {
@@ -15,7 +15,7 @@ public class Ship {
         this.col = col;
         this.row = row;
         this.orientation = orientation;
-
+        this.hits = 0;
         this.coordinates = new int[length];
         for(int i = 0; i < length; i++){
             if(orientation.equals("horizontal")){
@@ -40,6 +40,7 @@ public class Ship {
 
 
     public boolean getSunk(){
+
         return this.sunk;
     }
     public void setSunk(boolean sunk) {
@@ -71,7 +72,7 @@ public class Ship {
     }
 
     public void addHit() {
-        this.hits = hits++;
+        this.hits = hits + 1;
     }
 
     public int[] getCoordinates(){

@@ -11,7 +11,13 @@ public class Main {
         Player player2 = new Player(name);
 
         player1.placeShips();
+        player1.fireMissile();
+        player1.fireMissile();
 
+
+// Make two boards for each player
+        // One for when they place their own ships
+        // One for during the game when their guesses and marks their guessed spots either hit or miss etc.
 
 
 
