@@ -30,7 +30,7 @@ public class Ship {
 
     public void isSunk(int length, int hits) {
         if(hits >= length){
-            System.out.println("Ship is sunk!");
+            System.out.println("Ship with length " + length + " is sunk!");
             this.sunk = true;
 
         }

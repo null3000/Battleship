@@ -91,23 +91,9 @@ public class Board {
     public Ship getHitShip(int missileCol, int missileRow, ArrayList<Ship> ships) {
         // go through each ship one at a time
         for (int i = 0; i < ships.size(); i++) {
-            System.out.println(ships.size());
             Ship currentShip = ships.get(i);
-
-
-
-            for (int j = 0; j < currentShip.getCoordinates().length; j++) {
-                System.out.println(currentShip.getCoordinates()[j]);
-            }
-
-
-
             // Loop through each of the ships coordinates individually
             for (int j = 0; j < currentShip.getCoordinates().length; j++) {
-
-                System.out.println(currentShip.getCoordinates().length);
-
-
                 if (currentShip.getOrientation().equals("vertical")) {
                     if (currentShip.getCol() == missileCol && currentShip.getCoordinates()[j] == missileRow) {
                         return currentShip;
