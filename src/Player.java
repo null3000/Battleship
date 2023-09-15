@@ -11,6 +11,8 @@ public class Player {
 		private String name;
 		private Board board;
 
+		private VisibleBoard visibleBoard;
+
 //		create an array list of ships
 		private ArrayList<Integer> possibleLengths = new ArrayList<Integer>();
 
@@ -25,6 +27,9 @@ public class Player {
 			this.name = name;
 			this.board = new Board();
 			this.board.setupBoard();
+			this.visibleBoard = new VisibleBoard();
+			this.visibleBoard.setupBoard();
+
 
 
 		}
@@ -121,7 +126,11 @@ public class Player {
 						System.out.println("What is the row position of your missile?");
 						row = intInput();
 				}
+
+
+
 				if(board.checkHit(col, row)){
+						visibleBoard.markHit(col, row);
 						System.out.println("You hit a ship!");
 						Ship hitShip = board.getHitShip(col, row, ships);
 						hitShip.addHit();
@@ -131,8 +140,11 @@ public class Player {
 
 			} else {
 						System.out.println("You missed!");
+						visibleBoard.markMiss(col, row);
 				}
 				board.printBoard();
+				System.out.println();
+				visibleBoard.printBoard();
 
 
 

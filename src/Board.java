@@ -77,8 +77,10 @@ public class Board {
         if (board[row][col].equals(shipEmoji)) {
             hit = true;
             board[row][col] = " \uD83D\uDCA5 ";
+        } else if(board[row][col].equals(" \uD83D\uDCA5 ") || board[row][col].equals(" ✖️")) {
+            System.out.println("You already fired at this position");
         } else {
-            board[row][col] = " ✖️";
+            board[row][col] = " ❌ ";
         }
         return hit;
 
@@ -113,7 +115,7 @@ public class Board {
             }
 
         }
-        return ships.get(0);
+        return null;
     }
 
 
