@@ -1,6 +1,5 @@
 
 public class Ship {
-
     private int length;
     private int col;
     private int row;

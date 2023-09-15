@@ -13,6 +13,9 @@ public class Main {
         player1.placeShips();
         player1.fireMissile();
         player1.fireMissile();
+        player1.fireMissile();
+        player1.fireMissile();
+        player1.fireMissile();
 
 
 // Make two boards for each player
