@@ -7,20 +7,26 @@ public class Main {
         String name = s.nextLine();
         Player player1 = new Player(name);
         System.out.println("What is Player 2's name?");
-        String name2 = s.nextLine();
+        name = s.nextLine();
         Player player2 = new Player(name);
 
         player1.placeShips();
-        player1.fireMissile();
-        player1.fireMissile();
-        player1.fireMissile();
-        player1.fireMissile();
-        player1.fireMissile();
+        player2.placeShips();
+
+        while(!player1.gameOver() && !player2.gameOver()){
+            System.out.println(player1.getName() + " it is your turn");
+            player2.fireMissile();
+            System.out.println(player2.getName() + " it is your turn");
+            player1.fireMissile();
+        }
+
+        if(player1.gameOver()){
+            System.out.println(player2.getName() + " wins!");
+        }else{
+            System.out.println(player1.getName() + " wins!");
+        }
 
 
-// Make two boards for each player
-        // One for when they place their own ships
-        // One for during the game when their guesses and marks their guessed spots either hit or miss etc.
 
 
 

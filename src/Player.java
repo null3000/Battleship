@@ -65,16 +65,16 @@ public class Player {
 						possibleLengths.remove(possibleLengths.indexOf(length));
 
 						// Take inputs for where user wants for X and Y coordinates of ship
-						System.out.println("What is the column of your ship?");
+						System.out.println("What column do you want to place your ship?");
 						int col = intInput();
-						System.out.println("What is the row of your ship?");
+						System.out.println("What row do you want to place your ship?");
 						int row = intInput();
 						// Check if the placement is valid
 						while (!board.checkValidPlacement(choice, length, col, row)){
 								System.out.println("Please enter a valid placement");
-								System.out.println("What is the column of your ship?");
+								System.out.println("What column do you want to place your ship?");
 								col = intInput();
-								System.out.println("What is the row of your ship?");
+								System.out.println("What row do you want to place your ship?");
 								row = intInput();
 						}
 						if (choice == 1) {
@@ -87,9 +87,6 @@ public class Player {
 								board.placeShip("vertical", length, col, row);
 						}
 							board.printBoard();
-				}
-				for(int i = 0; i < ships.size(); i++) {
-						System.out.println("Ship " + i + " has length " + ships.get(i).getLength());
 				}
 		}
 
@@ -112,18 +109,17 @@ public class Player {
 	// write a function that gets the player's input on where they want to put their missile
 
 		public void fireMissile() {
-				System.out.println("Where would you like to fire your missile?");
 				Scanner scanner = new Scanner(System.in);
-				System.out.println("What is the column of your missile?");
+				System.out.println("What column do you want to fire your missile at?");
 				int col = intInput();
-				System.out.println("What is the row of your missile?");
+				System.out.println("What row do you want to fire your missile at");
 				int row = intInput();
 				// check  to make sure the row is between 0 and 9 and the col is between 0 and 9
 				while (row < 0 || row > 9 || col < 0 || col > 9) {
 						System.out.println("Please enter a valid position");
-						System.out.println("What is the column position of your missile?");
+						System.out.println("What column do you want to fire your missile at?");
 						col = intInput();
-						System.out.println("What is the row position of your missile?");
+						System.out.println("What row do you want to fire your missile at?");
 						row = intInput();
 				}
 
@@ -150,6 +146,16 @@ public class Player {
 
 		}
 
+		public boolean gameOver() {
+				boolean lost = true;
+				for(int i = 0; i < ships.size(); i++) {
+						if(!ships.get(i).getSunk()) {
+								lost = false;
+						}
+				}
+				return lost;
+		}
+
 
 
 
@@ -172,5 +178,7 @@ public class Player {
 		}
 
 
-
+		public String getName() {
+				return this.name;
+		}
 }
