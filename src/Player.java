@@ -115,7 +115,7 @@ public class Player {
 				System.out.println("What row do you want to fire your missile at");
 				int row = intInput();
 				// check  to make sure the row is between 0 and 9 and the col is between 0 and 9
-				while (row < 0 || row > 9 || col < 0 || col > 9) {
+				while (row < 0 || row > 8 || col < 0 || col > 8) {
 						System.out.println("Please enter a valid position");
 						System.out.println("What column do you want to fire your missile at?");
 						col = intInput();
@@ -124,9 +124,13 @@ public class Player {
 				}
 
 
+				int hit = board.checkHit(col, row);
 
-				if(board.checkHit(col, row)){
+
+
+				if(hit == 1) {
 						visibleBoard.markHit(col, row);
+						board.markHit(col, row);
 						System.out.println("You hit a ship!");
 						Ship hitShip = board.getHitShip(col, row, ships);
 						hitShip.addHit();
@@ -134,8 +138,12 @@ public class Player {
 						System.out.println("You hit the ship with length " + hitShip.getLength());
 						hitShip.isSunk(hitShip.getLength(), hitShip.getHits());
 
-			} else {
+			} else if (hit == 2) {
+						System.out.println("You already fired at this position, goofball");
+
+				} else if (hit == 3){
 						System.out.println("You missed!");
+						board.markMiss(col, row);
 						visibleBoard.markMiss(col, row);
 				}
 				board.printBoard();

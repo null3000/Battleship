@@ -16,6 +16,9 @@ public class Main {
         while(!player1.gameOver() && !player2.gameOver()){
             System.out.println(player1.getName() + " it is your turn");
             player2.fireMissile();
+            if(player2.gameOver()){
+                break;
+            }
             System.out.println(player2.getName() + " it is your turn");
             player1.fireMissile();
         }

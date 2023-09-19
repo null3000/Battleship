@@ -3,6 +3,8 @@ public class Board {
 
     public String[][] board = new String[9][9];
     public String shipEmoji = " \uD83D\uDEA2 ";
+    public String hitEmoji = " \uD83D\uDCA5 ";
+    public String missEmoji = " ❌️ ";
 
     public String[][] setupBoard() {
         for (int i = 0; i < board.length; i++) {
@@ -39,7 +41,7 @@ public class Board {
 
         boolean valid = true;
 
-        if (col < 0 || col > 9 || row < 0 || row > 9) {
+        if (col < 0 || col > 8 || row < 0 || row > 8) {
             valid = false;
         }
         //        check if the boat is out of bounds
@@ -72,15 +74,12 @@ public class Board {
 
         return valid;
     }
-    public boolean checkHit(int col, int row) {
-        boolean hit = false;
+    public int checkHit(int col, int row) {
+        int hit = 3;
         if (board[row][col].equals(shipEmoji)) {
-            hit = true;
-            board[row][col] = " \uD83D\uDCA5 ";
-        } else if(board[row][col].equals(" \uD83D\uDCA5 ") || board[row][col].equals(" ✖️")) {
-            System.out.println("You already fired at this position");
-        } else {
-            board[row][col] = " ❌ ";
+            hit = 1;
+        } else if(board[row][col].equals(hitEmoji) || board[row][col].equals(missEmoji)) {
+            hit = 2;
         }
         return hit;
 
@@ -116,6 +115,15 @@ public class Board {
 
         }
         return null;
+    }
+
+
+    public void markHit(int col, int row) {
+        board[row][col] = hitEmoji;
+    }
+
+    public void markMiss(int col, int row) {
+        board[row][col] = missEmoji;
     }
 
 
