@@ -27,6 +27,7 @@ public class Ship {
     }
 
 
+    // If a ship has taken enough hits, it is sunk
     public void isSunk(int length, int hits) {
         if(hits >= length){
             System.out.println("You sunk my battleship!");
@@ -39,7 +40,6 @@ public class Ship {
 
 
     public boolean getSunk(){
-
         return this.sunk;
     }
     public void setSunk(boolean sunk) {

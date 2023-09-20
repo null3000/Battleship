@@ -4,8 +4,7 @@ import java.util.Scanner;
 public class Player {
 
 
-//		create a player that has a board, a list ships, name
-//		place ships on the board
+//		place ships on the board//		create a player that has a board, a list ships, name
 
 
 		private String name;
@@ -124,10 +123,10 @@ public class Player {
 				}
 
 
+				// Run the 3 Option cases on what happens if the shot hits a ship, already hit spot, or water
 				int hit = board.checkHit(col, row);
 
-
-
+				// Hit case for a ship
 				if(hit == 1) {
 						visibleBoard.markHit(col, row);
 						board.markHit(col, row);
@@ -138,14 +137,18 @@ public class Player {
 						System.out.println("You hit the ship with length " + hitShip.getLength());
 						hitShip.isSunk(hitShip.getLength(), hitShip.getHits());
 
+						// Hit case for an already hit spot
 			} else if (hit == 2) {
 						System.out.println("You already fired at this position, goofball");
 
+						// Hit case for water
 				} else if (hit == 3){
 						System.out.println("You missed!");
 						board.markMiss(col, row);
 						visibleBoard.markMiss(col, row);
 				}
+
+				// Print both boards again
 				board.printBoard();
 				System.out.println();
 				visibleBoard.printBoard();
@@ -154,6 +157,7 @@ public class Player {
 
 		}
 
+		// A function to check if the game is over and should stop looping
 		public boolean gameOver() {
 				boolean lost = true;
 				for(int i = 0; i < ships.size(); i++) {

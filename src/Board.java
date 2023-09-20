@@ -16,7 +16,6 @@ public class Board {
     }
 
     public void printBoard() {
-
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 System.out.print(board[i][j]);
@@ -26,6 +25,8 @@ public class Board {
     }
 
     public void placeShip(String orientation, int length, int col, int row) {
+        // check if the board is horizontal or vertical
+        // and place the rest of its "pieces" there
         if (orientation.equals("horizontal")) {
             for (int i = 0; i < length; i++) {
                 board[row][col+i] = shipEmoji;
@@ -37,6 +38,7 @@ public class Board {
         }
     }
 
+    // function to check if the ship being placed is in the board
     public boolean checkValidPlacement(int OrientationChoice, int length, int col, int row) {
 
         boolean valid = true;
@@ -75,12 +77,16 @@ public class Board {
         return valid;
     }
     public int checkHit(int col, int row) {
+        // 3 Options for checking the hit
         int hit = 3;
+        // Option 1: If it's on a ship make it run the 1 case
         if (board[row][col].equals(shipEmoji)) {
             hit = 1;
+            // Option 2: If there is already a hit or miss that is placed there
         } else if(board[row][col].equals(hitEmoji) || board[row][col].equals(missEmoji)) {
             hit = 2;
         }
+        // Option 3: If it hits water, mark it a miss
         return hit;
 
 
@@ -90,7 +96,7 @@ public class Board {
 
     // write a function in Board that checks if the missile xPos and yPos hits a ship, and add a hit to the proper ship if it does
     public Ship getHitShip(int missileCol, int missileRow, ArrayList<Ship> ships) {
-        // go through each ship one at a time
+        // go through each ship one at a time and return the ship that the hit registers on
         for (int i = 0; i < ships.size(); i++) {
             Ship currentShip = ships.get(i);
             // Loop through each of the ships coordinates individually
