@@ -14,7 +14,7 @@ public class Player {
 		private VisibleBoard visibleBoard;
 
 //		create an array list of ships
-		private ArrayList<Integer> possibleLengths = new ArrayList<Integer>();
+		private final ArrayList<Integer> possibleLengths = new ArrayList<Integer>();
 
 
 		private ArrayList<Ship> ships = new ArrayList<Ship>();
@@ -81,7 +81,7 @@ public class Player {
 								Ship ship = new Ship(length, col, row, "horizontal");
 								ships.add(ship);
 								board.placeShip("horizontal", length, col, row);
-						} else if (choice == 2) {
+						} else {
 								Ship ship = new Ship(length, col, row, "vertical");
 								ships.add(ship);
 								board.placeShip("vertical", length, col, row);

@@ -42,16 +42,9 @@ public class Ship {
 
         return this.sunk;
     }
-    public void setSunk(boolean sunk) {
-        this.sunk = sunk;
-    }
 
     public int getLength() {
         return this.length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
     }
 
     public int getCol() {

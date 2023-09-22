@@ -6,13 +6,12 @@ public String wave = " 🌊 ";
 
 
 
-		public String[][] setupBoard() {
+		public void setupBoard() {
 				for (int i = 0; i < visibleBoard.length; i++) {
 						for (int j = 0; j < visibleBoard[0].length; j++) {
 								visibleBoard[i][j] = wave;
 						}
 				}
-				return visibleBoard;
 		}
 
 		public void printBoard() {

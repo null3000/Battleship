@@ -6,13 +6,12 @@ public class Board {
     public String hitEmoji = " \uD83D\uDCA5 ";
     public String missEmoji = " ❌️ ";
 
-    public String[][] setupBoard() {
+    public void setupBoard() {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 board[i][j] = " \uD83C\uDF0A ";
             }
         }
-        return board;
     }
 
     public void printBoard() {
@@ -58,15 +57,17 @@ public class Board {
         if (valid) {
             if (OrientationChoice == 1) {
                 for (int i = 0; i < length; i++) {
-                    if (board[row][col+i].equals(shipEmoji)) {
-                        valid = false;
-                    }
+		                if (board[row][col + i].equals(shipEmoji)) {
+				                valid = false;
+				                break;
+		                }
                 }
             } else if (OrientationChoice == 2) {
                 for (int i = 0; i < length; i++) {
-                    if (board[row+i][col].equals(shipEmoji)) {
-                        valid = false;
-                    }
+		                if (board[row + i][col].equals(shipEmoji)) {
+				                valid = false;
+				                break;
+		                }
                 }
             }
         }
