@@ -133,13 +133,14 @@ public class Player {
 						System.out.println("You hit a ship!");
 						Ship hitShip = board.getHitShip(col, row, ships);
 						hitShip.addHit();
-						System.out.println("This ship has " + hitShip.getHits() + " hits");
-						System.out.println("You hit the ship with length " + hitShip.getLength());
+//						System.out.println("This ship has " + hitShip.getHits() + " hits");
+//						System.out.println("You hit the ship with length " + hitShip.getLength());
 						hitShip.isSunk(hitShip.getLength(), hitShip.getHits());
 
 						// Hit case for an already hit spot
 			} else if (hit == 2) {
-						System.out.println("You already fired at this position, goofball");
+						System.out.println("You already fired at this position, goofball. Try again");
+						fireMissile();
 
 						// Hit case for water
 				} else if (hit == 3){
@@ -168,12 +169,6 @@ public class Player {
 				return lost;
 		}
 
-
-
-
-		public Board getPlayersBoard() {
-				return this.board;
-		}
 
 
 //		STOLEN CODE VERY HELPFUL THANKS MR. LIN
