@@ -7,7 +7,6 @@ public class Ship {
     private boolean sunk = false;
     private int[] coordinates;
     private int hits;
-    private int shipNum;
 
 
     public Ship(int length, int col, int row, String orientation) {
