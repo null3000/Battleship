@@ -36,6 +36,7 @@ public class Player {
 
 		// Function to place the ships
 		public void placeShips(){
+				int shipNum = 1;
 				setupPossibleLengths();
 				while(possibleLengths.size() > 0) {
 						System.out.println(name + " place your ships");
@@ -79,12 +80,13 @@ public class Player {
 						if (choice == 1) {
 								Ship ship = new Ship(length, col, row, "horizontal");
 								ships.add(ship);
-								board.placeShip("horizontal", length, col, row);
+								board.placeShip("horizontal", length, col, row, shipNum);
 						} else {
 								Ship ship = new Ship(length, col, row, "vertical");
 								ships.add(ship);
-								board.placeShip("vertical", length, col, row);
+								board.placeShip("vertical", length, col, row, shipNum);
 						}
+						shipNum++;
 							board.printBoard();
 				}
 		}
@@ -128,11 +130,12 @@ public class Player {
 
 				// Hit case for a ship
 				if(hit == 1) {
-						visibleBoard.markHit(col, row);
-						board.markHit(col, row);
+
 						System.out.println("You hit a ship!");
 						Ship hitShip = board.getHitShip(col, row, ships);
 						hitShip.addHit();
+						visibleBoard.markHit(col, row);
+						board.markHit(col, row);
 						System.out.println("This ship has " + hitShip.getHits() + " hits");
 						System.out.println("You hit the ship with length " + hitShip.getLength());
 						hitShip.isSunk(hitShip.getLength(), hitShip.getHits());

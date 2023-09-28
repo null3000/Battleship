@@ -4,12 +4,16 @@ public class Board {
     public String[][] board = new String[9][9];
     public String shipEmoji = " \uD83D\uDEA2 ";
     public String hitEmoji = " \uD83D\uDCA5 ";
+
+    public String waveEmoji = " \uD83C\uDF0A ";
+
+
     public String missEmoji = " ❌️ ";
 
     public void setupBoard() {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                board[i][j] = " \uD83C\uDF0A ";
+                board[i][j] = waveEmoji;
             }
         }
     }
@@ -17,18 +21,28 @@ public class Board {
     public void printBoard() {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                System.out.print(board[i][j]);
+
+//                if the location isnt a ship, and isnt isnt a wave, or a hit, or a miss, then it must be a number
+                if(board[i][j].equals(hitEmoji) || board[i][j].equals(missEmoji) || board[i][j].equals(waveEmoji)){
+                    System.out.print(board[i][j]);
+                } else{
+                    System.out.print(shipEmoji);
+                }
+
             }
             System.out.println();
         }
     }
 
-    public void placeShip(String orientation, int length, int col, int row) {
+    public void placeShip(String orientation, int length, int col, int row, int shipNum) {
         // check if the board is horizontal or vertical
         // and place the rest of its "pieces" there
+
+
+        String strShipNum = shipNum + "";
         if (orientation.equals("horizontal")) {
             for (int i = 0; i < length; i++) {
-                board[row][col+i] = shipEmoji;
+                board[row][col+i] = strShipNum;
             }
         } else if (orientation.equals("vertical")) {
             for (int i = 0; i < length; i++) {
@@ -39,6 +53,8 @@ public class Board {
 
     // function to check if the ship being placed is in the board
     public boolean checkValidPlacement(int OrientationChoice, int length, int col, int row) {
+
+        boolean shipisThere = board[row][col].equals("1") || board[row][col].equals("2") || board[row][col].equals("3") || board[row][col].equals("4") || board[row][col].equals("5");
 
         boolean valid = true;
 
@@ -59,14 +75,14 @@ public class Board {
         if (valid) {
             if (OrientationChoice == 1) {
                 for (int i = 0; i < length; i++) {
-		                if (board[row][col + i].equals(shipEmoji)) {
+		                if (shipisThere) {
 				                valid = false;
 				                break;
 		                }
                 }
             } else if (OrientationChoice == 2) {
                 for (int i = 0; i < length; i++) {
-		                if (board[row + i][col].equals(shipEmoji)) {
+		                if (shipisThere) {
 				                valid = false;
 				                break;
 		                }
@@ -79,49 +95,31 @@ public class Board {
     }
     public int checkHit(int col, int row) {
         // 3 Options for checking the hit
-        int hit = 3;
-        // Option 1: If it's on a ship make it run the 1 case
-        if (board[row][col].equals(shipEmoji)) {
-            hit = 1;
-            // Option 2: If there is already a hit or miss that is placed there
-        } else if(board[row][col].equals(hitEmoji) || board[row][col].equals(missEmoji)) {
-            hit = 2;
-        }
+
         // Option 3: If it hits water, mark it a miss
-        return hit;
+        int hit = 3;
+        // Option 1: If it's an integer, it's a ship, mark it a hit
+        if(board[row][col].equals("1") || board[row][col].equals("2") || board[row][col].equals("3") || board[row][col].equals("4") || board[row][col].equals("5")) {
+            hit = 1;
+        }
+            // Option 2: If there is already a hit or miss that is placed there
+            else if(board[row][col].equals(hitEmoji) || board[row][col].equals(missEmoji)){
+                hit = 2;
+            }
 
-
+		    return hit;
     }
 
     
 
     // write a function in Board that checks if the missile xPos and yPos hits a ship, and add a hit to the proper ship if it does
     public Ship getHitShip(int missileCol, int missileRow, ArrayList<Ship> ships) {
-        // go through each ship one at a time and return the ship that the hit registers on
-        for (int i = 0; i < ships.size(); i++) {
-            Ship currentShip = ships.get(i);
-            // Loop through each of the ships coordinates individually
-            for (int j = 0; j < currentShip.getCoordinates().length; j++) {
-                if (currentShip.getOrientation().equals("vertical")) {
-                    if (currentShip.getCol() == missileCol && currentShip.getCoordinates()[j] == missileRow) {
-                        return currentShip;
-                    }
-                }
-            }
-        }
-        for (int i = 0; i < ships.size(); i++) {
-            Ship currentShip = ships.get(i);
-            // Loop through each of the ships coordinates individually
-            for (int j = 0; j < ships.get(i).getCoordinates().length; j++) {
-                if (currentShip.getOrientation().equals("horizontal")) {
-                    if (currentShip.getRow() == missileRow && currentShip.getCoordinates()[j] == missileCol) {
-                        return currentShip;
-                    }
-                }
-            }
 
-        }
-        return null;
+        //                convert board[missileRow][missileCol] to an int
+        int boardInt = Integer.parseInt(board[missileRow][missileCol]);
+        boardInt = boardInt - 1;
+        return ships.get(boardInt);
+
     }
 
 

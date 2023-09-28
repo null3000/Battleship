@@ -21,6 +21,8 @@ public class Main {
             }
             System.out.println(player2.getName() + " it is your turn");
             player1.fireMissile();
+            player1.getPlayersBoard().printBoard();
+
         }
 
         if(player1.gameOver()){
