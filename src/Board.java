@@ -46,7 +46,8 @@ public class Board {
             }
         } else if (orientation.equals("vertical")) {
             for (int i = 0; i < length; i++) {
-                board[row+i][col] = shipEmoji;
+//
+                board[row+i][col] = strShipNum;
             }
         }
     }
