@@ -54,14 +54,18 @@ public class Board {
 
     // function to check if the ship being placed is in the board
     public boolean checkValidPlacement(int OrientationChoice, int length, int col, int row) {
-
-        boolean shipisThere = board[row][col].equals("1") || board[row][col].equals("2") || board[row][col].equals("3") || board[row][col].equals("4") || board[row][col].equals("5");
-
+        
         boolean valid = true;
-
-        if (col < 0 || col > 8 || row < 0 || row > 8) {
-            valid = false;
+        if (col > 8 || col < 0) {
+            System.out.println("col is out of bounds");
+            return false;
         }
+        if(row>8 || row < 0){
+            System.out.println("row is out of bounds");
+            return false;
+        }
+
+
         //        check if the boat is out of bounds
         if (OrientationChoice == 1) {
             if (col + length > 9) {
@@ -74,6 +78,8 @@ public class Board {
         }
         //        check if the boat is overlapping, make sure that the placement is inbounds before checking for overlap
         if (valid) {
+            boolean shipisThere = board[row][col].equals("1") || board[row][col].equals("2") || board[row][col].equals("3") || board[row][col].equals("4") || board[row][col].equals("5");
+
             if (OrientationChoice == 1) {
                 for (int i = 0; i < length; i++) {
 		                if (shipisThere) {

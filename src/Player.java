@@ -143,6 +143,7 @@ public class Player {
 						// Hit case for an already hit spot
 			} else if (hit == 2) {
 						System.out.println("You already fired at this position, goofball");
+						fireMissile();
 
 						// Hit case for water
 				} else if (hit == 3){
