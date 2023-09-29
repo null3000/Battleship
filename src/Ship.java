@@ -48,9 +48,6 @@ public class Ship {
     }
 
 
-    public String getOrientation() {
-        return this.orientation;
-    }
 
     public int getHits() {
         return this.hits;

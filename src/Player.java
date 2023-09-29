@@ -28,9 +28,6 @@ public class Player {
 			this.board.setupBoard();
 			this.visibleBoard = new VisibleBoard();
 			this.visibleBoard.setupBoard();
-
-
-
 		}
 
 
@@ -110,7 +107,8 @@ public class Player {
 	// write a function that gets the player's input on where they want to put their missile
 
 		public void fireMissile() {
-				Scanner scanner = new Scanner(System.in);
+//				print visible board
+				visibleBoard.printBoard();
 				System.out.println("What column do you want to fire your missile at?");
 				int col = intInput();
 				System.out.println("What row do you want to fire your missile at");
@@ -136,8 +134,6 @@ public class Player {
 						hitShip.addHit();
 						visibleBoard.markHit(col, row);
 						board.markHit(col, row);
-						System.out.println("This ship has " + hitShip.getHits() + " hits");
-						System.out.println("You hit the ship with length " + hitShip.getLength());
 						hitShip.isSunk(hitShip.getLength(), hitShip.getHits());
 
 						// Hit case for an already hit spot
@@ -152,10 +148,8 @@ public class Player {
 						visibleBoard.markMiss(col, row);
 				}
 
-				// Print both boards again
-				board.printBoard();
-				System.out.println();
 				visibleBoard.printBoard();
+
 
 
 
@@ -175,12 +169,11 @@ public class Player {
 
 
 
-		public Board getPlayersBoard() {
-				return this.board;
-		}
 
 
-//		STOLEN CODE VERY HELPFUL THANKS MR. LIN
+
+
+		//		STOLEN CODE VERY HELPFUL THANKS MR. LIN
 		static Scanner s = new Scanner(System.in);
 		public static int intInput() {
 				String uInput = s.nextLine();

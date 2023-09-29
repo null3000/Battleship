@@ -21,7 +21,6 @@ public class Main {
             }
             System.out.println(player2.getName() + " it is your turn");
             player1.fireMissile();
-            player1.getPlayersBoard().printBoard();
 
         }
 
@@ -30,12 +29,5 @@ public class Main {
         }else{
             System.out.println(player1.getName() + " wins!");
         }
-
-
-
-
-
-
-
     }
 }

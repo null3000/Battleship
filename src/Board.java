@@ -22,7 +22,7 @@ public class Board {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
 
-//                if the location isnt a ship, and isnt isnt a wave, or a hit, or a miss, then it must be a number
+//                if the location isnt a ship, and isnt a wave, or a hit, or a miss, then it must be a number
                 if(board[i][j].equals(hitEmoji) || board[i][j].equals(missEmoji) || board[i][j].equals(waveEmoji)){
                     System.out.print(board[i][j]);
                 } else{
@@ -54,7 +54,7 @@ public class Board {
 
     // function to check if the ship being placed is in the board
     public boolean checkValidPlacement(int OrientationChoice, int length, int col, int row) {
-        
+
         boolean valid = true;
         if (col > 8 || col < 0) {
             System.out.println("col is out of bounds");
@@ -119,7 +119,7 @@ public class Board {
 
     
 
-    // write a function in Board that checks if the missile xPos and yPos hits a ship, and add a hit to the proper ship if it does
+    // checks if the missile xPos and yPos hits a ship, and add a hit to the proper ship if it does
     public Ship getHitShip(int missileCol, int missileRow, ArrayList<Ship> ships) {
 
         //                convert board[missileRow][missileCol] to an int
